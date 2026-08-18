@@ -1,0 +1,22 @@
+services:
+  chronicle:
+    build:
+      context: .
+    environment:
+      FLAG: ${FLAG:-}
+    container_name: chronicle-redis-pwn
+    user: "999:999"
+    ports:
+      - "6379:6379"
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+    tmpfs:
+      - /tmp:rw,noexec,nosuid,size=16m
+    healthcheck:
+      test: ["CMD-SHELL", "redis-cli -p 6379 PING | grep -qx PONG"]
+      interval: 3s
+      timeout: 2s
+      retries: 10

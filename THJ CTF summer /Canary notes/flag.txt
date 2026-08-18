@@ -1,0 +1,1 @@
+THJCC{fake_flag_for_local}

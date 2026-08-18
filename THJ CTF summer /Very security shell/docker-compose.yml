@@ -1,0 +1,7 @@
+services:
+  easy_logic:
+    build: .
+    platform: linux/amd64
+    ports:
+      - "1337:1337"
+    restart: unless-stopped
